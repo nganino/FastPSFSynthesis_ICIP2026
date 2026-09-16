@@ -27,7 +27,7 @@ with $C_d$ and $C_s$ as the defocus coefficient and spherical aberration coeffic
 $$
 \tilde{J}_0(a) =
 \begin{cases}
-1 - \dfrac{a^2}{4} + \dfrac{a^4}{64}, & a \le 1 \,
+1 - \dfrac{a^2}{4} + \dfrac{a^4}{64}, & a \le 1 \\
 \sqrt{\dfrac{2}{\pi}}\left(\dfrac{3}{2}\alpha^{-1/2} - \dfrac{a^2}{2}\alpha^{-3/2} + \dfrac{1}{a}\right)\cos\left(a - \dfrac{\pi}{4}\right), & a > 1
 \end{cases}
 $$
