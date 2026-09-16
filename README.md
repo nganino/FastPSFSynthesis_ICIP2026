@@ -6,6 +6,8 @@ Accurately simulating a lens's point spread function (PSF) requires evaluating a
 
 The corresponding website for this project is available at **https://hankel.qiguo.org**.
 
+<img width="1447" height="1107" alt="image" src="https://github.com/user-attachments/assets/c9a368d2-d442-4f7f-b4e8-630220578d28" />
+
 ## Theory
 
 For a radially symmetric pupil, the free-space diffraction integral reduces to a zeroth-order Hankel transform (a Fourier-Bessel transform) of the pupil function $P(r)$:
