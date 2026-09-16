@@ -17,7 +17,7 @@ $$
 where $r$ and $k$ are the radial coordinates in the aperture and sensor planes, $R$ is the aperture radius, and $J_0$ is the zeroth-order Bessel function of the first kind. Under defocus, the pupil phase is quadratic in $r$:
 
 $$
-P(r) = \exp\!\left(j\, 2 C_d \, r^2 / R^2\right)
+P(r) = \exp\left(j\, 2 C_d \, r^2 / R^2\right)
 $$
 
 with $C_d$ the defocus coefficient. This integral has no closed form in general because of $J_0$ — so the key idea behind this repo is to replace $J_0$ with a piecewise closed-form approximation that is accurate over its whole domain:
