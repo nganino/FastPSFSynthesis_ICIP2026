@@ -11,13 +11,13 @@ The corresponding website for this project is available at **https://hankel.qigu
 For a radially symmetric pupil, the free-space diffraction integral reduces to a zeroth-order Hankel transform (a Fourier-Bessel transform) of the pupil function $P(r)$:
 
 $$
-h(k) = \left| \, 2\pi \int_0^{R} P(r)\, J_0(2\pi k r)\, r \, dr \, \right|^2
+h(k) = \left| 2\pi \int_0^{R} P(r) J_0(2\pi k r) r  dr  \right|^2
 $$
 
 where $r$ and $k$ are the radial coordinates in the aperture and sensor planes, $R$ is the aperture radius, and $J_0$ is the zeroth-order Bessel function of the first kind. Under defocus, the pupil phase is quadratic in $r$:
 
 $$
-P(r) = \exp\left(j\, 2 C_d \, r^2 / R^2\right)
+P(r) = \exp\left(j 2 C_d  r^2 / R^2\right)
 $$
 
 with $C_d$ the defocus coefficient. This integral has no closed form in general because of $J_0$ — so the key idea behind this repo is to replace $J_0$ with a piecewise closed-form approximation that is accurate over its whole domain:
@@ -25,7 +25,7 @@ with $C_d$ the defocus coefficient. This integral has no closed form in general 
 $$
 \tilde{J}_0(a) =
 \begin{cases}
-1 - \dfrac{a^2}{4} + \dfrac{a^4}{64}, & a \le 1 \\[6pt]
+1 - \dfrac{a^2}{4} + \dfrac{a^4}{64}, & a \le 1
 \sqrt{\dfrac{2}{\pi}}\left(\dfrac{3}{2}\alpha^{-1/2} - \dfrac{a^2}{2}\alpha^{-3/2} + \dfrac{1}{a}\right)\cos\!\left(a - \dfrac{\pi}{4}\right), & a > 1
 \end{cases}
 $$
