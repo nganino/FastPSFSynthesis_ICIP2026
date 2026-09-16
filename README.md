@@ -6,6 +6,32 @@ Accurately simulating a lens's point spread function (PSF) requires evaluating a
 
 An interactive version of the simulator is available at **https://hankel.qiguo.org**.
 
+## Theory
+
+For a radially symmetric pupil, the free-space diffraction integral reduces to a zeroth-order Hankel transform (a Fourier-Bessel transform) of the pupil function $P(r)$:
+
+$$
+h(k) = \left| \, 2\pi \int_0^{R} P(r)\, J_0(2\pi k r)\, r \, dr \, \right|^2
+$$
+
+where $r$ and $k$ are the radial coordinates in the aperture and sensor planes, $R$ is the aperture radius, and $J_0$ is the zeroth-order Bessel function of the first kind. Under defocus, the pupil phase is quadratic in $r$:
+
+$$
+P(r) = \exp\!\left(j\, 2 C_d \, r^2 / R^2\right)
+$$
+
+with $C_d$ the defocus coefficient. This integral has no closed form in general because of $J_0$ — so the key idea behind this repo is to replace $J_0$ with a piecewise closed-form approximation that is accurate over its whole domain:
+
+$$
+\tilde{J}_0(a) =
+\begin{cases}
+1 - \dfrac{a^2}{4} + \dfrac{a^4}{64}, & a \le 1 \\[6pt]
+\sqrt{\dfrac{2}{\pi}}\left(\dfrac{3}{2}\alpha^{-1/2} - \dfrac{a^2}{2}\alpha^{-3/2} + \dfrac{1}{a}\right)\cos\!\left(a - \dfrac{\pi}{4}\right), & a > 1
+\end{cases}
+$$
+
+where $\alpha$ is a tunable operating-point hyperparameter (the `TLC` argument threaded through `src/closed_form.py`). Substituting $\tilde{J}_0$ into the Hankel transform above turns it into a sum of Gaussian-type integrals with closed-form solutions in terms of the error function — this is the derivation implemented in `src/closed_form.py` and detailed further in the "How it works" section below.
+
 ## How it works
 
 1. **Defocus only** (`src/closed_form.py`): The pupil phase is purely quadratic (`P(r) = exp(j·2·Cd·r²/R²)`). Substituting a piecewise rational/cosine approximation of the zeroth-order Bessel function `J0` into the Hankel integral reduces it to six Gaussian-type integrals with closed-form solutions (error function / imaginary error function).
