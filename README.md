@@ -4,7 +4,7 @@ Reference implementation for **"Fast PSF Synthesis with Defocused and Spherical 
 
 Accurately simulating a lens's point spread function (PSF) requires evaluating a diffraction (Hankel) integral that has no closed-form solution, and is normally computed with FFT or Hankel-transform numerics. This repo implements an **approximate closed-form solution** to that integral for defocus and spherical (Seidel) aberration, obtained by combining a piecewise Bessel-function approximation with Gaussian-type integrals. The result is a PSF simulator with `O(N)` complexity in radial resolution that is **~2x faster than Hankel-based integration and ~4x faster than FFT**, while closely matching full wave-optical PSFs — enabling large-scale, per-pixel depth-of-field (DoF) image synthesis.
 
-An interactive version of the simulator is available at **https://hankel.qiguo.org**.
+The corresponding website for this project is available at **https://hankel.qiguo.org**.
 
 ## How it works
 
