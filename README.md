@@ -18,15 +18,15 @@ The corresponding website for this project is available at **https://hankel.qigu
 ```
 src/                      Core numerical library (no plotting / I/O side effects)
   closed_form.py            Closed-form defocus & spherical-aberration PSF solutions (Appendix derivation)
-  closed_form_accelerated.py  Reduced-term "accelerated" variant of the closed-form solution
+  closed_form_accelerated.py  Reduced-term "accelerated" variant of the closed-form solution (truncates higher order terms of the approximation --> faster but worse accuracy)
   direct_quadrature.py      Ground-truth Hankel integral via direct numerical quadrature
   spherical.py               Piecewise-quadratic phase approximation for spherical aberration
-  alpha_table.py              Loads the pretrained per-ring alpha coefficients from
+  alpha_table.py              Loads the pretrained alpha coefficients to optimize spherical approximation from
                               data/alpha_coefficients.csv
   apply_psf.py               Convolve an image with a PSF kernel and visualize/save the result
 
 data/
-  alpha_coefficients.csv    Pretrained per-ring alpha coefficients from an alpha sweep,
+  alpha_coefficients.csv    Pretrained alpha coefficients obtained from an alpha sweep to approximate spherical abeeration,
                               one row per (Cd, Cs) combination -- see src/alpha_table.py
 
 scripts/                  Entry-point experiments (reproduce paper figures / run demos)
@@ -35,8 +35,6 @@ scripts/                  Entry-point experiments (reproduce paper figures / run
   render_image.py            Per-pixel depth-of-field rendering over an RGB-D scene,
                               comparing closed-form / FFT / direct / pillbox kernels (Fig. 5),
                               plus the focus-breathing animation
-                              (poster_figures/media/focus_breathing.gif); contains cell
-                              markers (`# %%`) for interactive/notebook-style use
   website_figure_generators.py  Higher-DPI variants of the comparison figures (adds SSIM metric,
                               requires torch/torchmetrics), plus render_rendering_race_video()
                               which regenerates poster_figures/media/rendering_race.avi
@@ -79,10 +77,4 @@ To regenerate `poster_figures/media/rendering_race.avi` (a side-by-side race bet
 python -c "from scripts.website_figure_generators import render_rendering_race_video; render_rendering_race_video()"
 ```
 
-## Citation
-
-If you use this code, please cite:
-
 > Nicholas Ganino and Qi Guo, "Fast PSF Synthesis with Defocused and Spherical Aberration," IEEE International Conference on Image Processing (ICIP).
-
-(Update with full proceedings/DOI details once available.)
