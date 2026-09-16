@@ -1,0 +1,10 @@
+# Core dependencies (src/ library + scripts/main.py, render_image.py)
+numpy>=2.0
+scipy
+matplotlib
+pillow
+
+# Optional: only required by scripts/website_figure_generators.py
+torch          # SSIM metric (compute_ssim)
+torchmetrics   # SSIM metric (compute_ssim)
+opencv-python  # video encoding (render_rendering_race_video)

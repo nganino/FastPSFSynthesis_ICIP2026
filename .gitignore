@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*.tmp
+~*
+
+# Default script output name from apply_psf.py
+blurred_output.jpg
+
+# Ad-hoc local verification outputs (not part of the presented repo)
+test_outputs/
